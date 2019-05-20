@@ -1,0 +1,10 @@
+version: "3"
+services:
+    project-app:
+        build:
+            context: ../app
+            dockerfile: Dockerfile
+        command: ["/bin/bash", "-c", "nodemon -L /var/www/app/index.js"]
+        ports:
+            - 8080:8080
+        restart: always
