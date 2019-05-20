@@ -14,7 +14,7 @@ dev-up: dev-down
 
 # make dev-build
 # make dev-build CONTAINER=project-app
-dev-build:
+dev-build: dev-down
 ifndef CONTAINER
 	docker-compose -p $(PROJECT_NAME) -f docker-compose-dev.yml build
 else
@@ -36,7 +36,7 @@ prod-up: prod-down
 
 # make prod-build
 # make prod-build CONTAINER=project-app
-prod-build:
+prod-build: prod-down
 ifndef CONTAINER
 	docker-compose -p $(PROJECT_NAME) -f docker-compose-prod.yml build
 else

@@ -6,7 +6,7 @@ Run:
   - `cd main && make dev-up`
 
 Call:
- - `http://localhost:8080`
+ - `curl -X GET http://localhost:8080`
 
 Shutdown:
   - `cd main && make dev-down`
