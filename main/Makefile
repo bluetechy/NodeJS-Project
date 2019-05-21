@@ -13,12 +13,12 @@ dev-up: dev-down
 	docker-compose -p $(PROJECT_NAME) -f docker-compose-dev.yml up -d
 
 # make dev-build
-# make dev-build CONTAINER=project-app
+# make dev-build SERVICE_NAME=project-app
 dev-build: dev-down
-ifndef CONTAINER
+ifndef SERVICE_NAME
 	docker-compose -p $(PROJECT_NAME) -f docker-compose-dev.yml build
 else
-	docker-compose -p $(PROJECT_NAME) -f docker-compose-dev.yml build $(CONTAINER)
+	docker-compose -p $(PROJECT_NAME) -f docker-compose-dev.yml build $(SERVICE_NAME)
 endif
 
 # make dev-down
@@ -35,12 +35,12 @@ prod-up: prod-down
 	docker-compose -p $(PROJECT_NAME) -f docker-compose-prod.yml up -d
 
 # make prod-build
-# make prod-build CONTAINER=project-app
+# make prod-build SERVICE_NAME=project-app
 prod-build: prod-down
-ifndef CONTAINER
+ifndef SERVICE_NAME
 	docker-compose -p $(PROJECT_NAME) -f docker-compose-prod.yml build
 else
-	docker-compose -p $(PROJECT_NAME) -f docker-compose-prod.yml build $(CONTAINER)
+	docker-compose -p $(PROJECT_NAME) -f docker-compose-prod.yml build $(SERVICE_NAME)
 endif
 
 # make prod-down
