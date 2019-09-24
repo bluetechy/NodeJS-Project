@@ -1,0 +1,24 @@
+---
+apiVersion: skaffold/v1beta13
+kind: Config
+build:
+    artifacts:
+        - image: bluetechy/frontend-app
+          context: ../frontend-app
+          docker:
+              dockerfile: Dockerfile
+    local:
+        push: false
+    tagPolicy:
+        sha256: {}
+deploy:
+    helm:
+        releases:
+            - name: dev
+              chartPath: ../../charts/service-graph
+              imageStrategy:
+                  helm: {}
+              namespace: dev
+              skipBuildDependencies: true
+              valuesFiles:
+                  - ../../charts/service-graph/values-dev.yaml
