@@ -65,7 +65,6 @@ install-brew:
 install-helm:
 	curl -L https://get.helm.sh/helm-v2.14.3-darwin-amd64.tar.gz | tar xz
 	sudo mv darwin-amd64/helm /usr/local/bin/helm
-	helm init --upgrade
 
 # make install-coredns
 install-coredns:
