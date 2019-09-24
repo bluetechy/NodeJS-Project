@@ -13,6 +13,8 @@ Shutdown:
 
 ## Kubernetes Commands:
 
+See also https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
 To create a new `namespace` (e.g. where `prod` is the new namespace):
 
 * `kubectl create namespace prod`
