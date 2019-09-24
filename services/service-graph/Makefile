@@ -43,44 +43,63 @@ k8s-log:
 # INSTALLATION FOR KUBERNETES
 ########################################################################
 
-#
-# Create or replace registry secret
-#
-create-secret:
-	kubectl delete secret --ignore-not-found ${AWS_SECRET_NAME}
-	kubectl create secret docker-registry ${AWS_SECRET_NAME} \
- 		--docker-server=https://${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com \
- 		--docker-username=AWS \
- 		--docker-password="${AWS_TOKEN}" \
- 		--docker-email="${AWS_EMAIL}"
+# make create-admin
+create-admin:
+	kubectl apply -f dashboard-adminuser.yaml
+	kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
 
+# make show-admin-token
+show-admin-token:
+	kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+
+# make create-namespace
+create-namespace:
+	kubectl create namespace ${PROJECT_ENV}
+	kubectl config set-context --current --namespace=${PROJECT_ENV}
+
+# make install-brew
 install-brew:
 	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
+# make install-helm
 install-helm:
 	curl -L https://get.helm.sh/helm-v2.14.3-darwin-amd64.tar.gz | tar xz
 	sudo mv darwin-amd64/helm /usr/local/bin/helm
 	helm init --upgrade
 
+# make install-coredns
 install-coredns:
 	helm install stable/coredns --name coredns --namespace=kube-system
 
-# make installl-skaffold
+# make install-skaffold
 install-skaffold:
 	curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-darwin-amd64
 	chmod +x skaffold
 	sudo mv skaffold /usr/local/bin
 
-# https://github.com/helm/charts/tree/master/stable/prometheus-operator
-install-prometheus:
-	helm install stable/prometheus-operator --name prometheus-operator --namespace monitoring
-
-# tiller get installed in --namespace=kube-system
+# make install-tiller
 install-tiller:
 	helm init --upgrade
 
+# make update-skaffold
 update-skaffold: install-skaffold
 
 # https://github.com/johanhaleby/kubetail
+# make install-kubetail
 install-kubetail:
 	brew tap johanhaleby/kubetail && brew install --HEAD kubetail
+
+########################################################################
+# USING GUI FOR KUBERNETES
+########################################################################
+
+# https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
+
+# make k8s-gui-run
+k8s-gui-run:
+	kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta1/aio/deploy/recommended.yaml
+	kubectl proxy
+
+# make k8s-gui-open
+k8s-gui-open:
+	open http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
