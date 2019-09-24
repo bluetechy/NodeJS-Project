@@ -5,7 +5,7 @@
 PROJECT_ENV = dev
 PROJECT_NAME = project-${PROJECT_ENV}
 
-ROOT_PATH=`echo $(PWD) | rev | cut -d'/' -f4- | rev`
+ROOT_PATH=`echo $(PWD) | rev | cut -d'/' -f3- | rev`
 
 ########################################################################
 # RULES FOR DOCKER COMPOSE

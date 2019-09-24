@@ -17,7 +17,7 @@ spec:
             name: frontend-pod
         spec:
             containers:
-                - name: frontend-proxy
+                - name: frontend-app
                   command: ["/bin/bash", "-c", "nodemon -L /var/www/app/index.js"]
                   image: bluetechy/frontend-app
                   imagePullPolicy: {{ .Values.image.pullPolicy }}
