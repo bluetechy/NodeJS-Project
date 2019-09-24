@@ -1,0 +1,16 @@
+# Default values for service-graph.
+
+deployment:
+    environment: dev
+    local: true
+    version: "5-2019092401"
+
+image:
+    pullPolicy: IfNotPresent
+
+repository:
+    rootDir: "/Users/matthewm/Documents/Github/bluetechy/NodeJS-Project"
+
+service:
+    frontend:
+        replicas: 1
