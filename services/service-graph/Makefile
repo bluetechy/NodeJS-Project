@@ -12,10 +12,10 @@ ROOT_PATH=`echo $(PWD) | rev | cut -d'/' -f3- | rev`
 ########################################################################
 
 # make dc-up
-dc-up: dc-down
+dc-app-up: dc-app-down
 	docker-compose -p ${PROJECT_NAME} -f docker-compose-${PROJECT_ENV}.yml up
 # make dc-down
-dc-down:
+dc-app-down:
 	docker-compose -p ${PROJECT_NAME} -f docker-compose-${PROJECT_ENV}.yml down
 	docker-compose -p ${PROJECT_NAME} -f docker-compose-${PROJECT_ENV}.yml rm -f
 
@@ -23,20 +23,20 @@ dc-down:
 # RULES FOR KUBERNETES
 ########################################################################
 
-# make k8s-build
-k8s-build:
+# make k8s-app-build
+k8s-app-build:
 	skaffold build -f skaffold-${PROJECT_ENV}.yaml --skip-tests=true
-# make k8s-up
-k8s-up: k8s-down k8s-build
+# make k8s-app-up
+k8s-app-up: k8s-app-down k8s-app-build
 	helm install ../../charts/service-graph --namespace ${PROJECT_ENV} --name=${PROJECT_NAME} --values=../../charts/service-graph/values-${PROJECT_ENV}.yaml --set repository.rootDir="${ROOT_PATH}"
-# make k8s-down
-k8s-down:
+# make k8s-app-down
+k8s-app-down:
 	(helm delete ${PROJECT_NAME} --purge || true)
-# make k8s-inspect
-k8s-inspect:
+# make k8s-app-inspect
+k8s-app-inspect:
 	helm install ../../charts/service-graph --namespace ${PROJECT_ENV} --dry-run --values=../../charts/service-graph/values-${PROJECT_ENV}.yaml --set repository.rootDir="${ROOT_PATH}" --debug
-# make k8s-log
-k8s-log:
+# make k8s-app-log
+k8s-app-log:
 	kubetail "^.*depl.*" --regex
 
 ########################################################################
@@ -95,10 +95,14 @@ install-kubetail:
 
 # https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/
 
-# make k8s-gui-run
-k8s-gui-run:
+# make k8s-gui-up
+k8s-gui-up:
 	kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta1/aio/deploy/recommended.yaml
 	kubectl proxy
+
+# make k8s-gui-down
+k8s-gui-down:
+	kubectl delete -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta1/aio/deploy/recommended.yaml
 
 # make k8s-gui-open
 k8s-gui-open:
