@@ -130,7 +130,7 @@ install-tiller:
 
 # make install-coredns
 install-coredns:
-	helm install stable/coredns --name coredns --namespace=kube-system
+	helm install stable/coredns --namespace=kube-system --name coredns
 
 # make install-skaffold
 install-skaffold:
