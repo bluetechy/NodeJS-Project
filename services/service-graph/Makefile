@@ -102,7 +102,7 @@ skaffold-graph-up-debug:
 skaffold-graph-down:
 	skaffold delete -f skaffold-${PROJECT_ENV}.yaml
 skaffold-graph-inspect:
-	helm install ../../charts/service-graph --dry-run --values=../../charts/service-graph/values-${PROJECT_ENV}.yaml --set repository.rootDir="${ROOT_PATH}" --debug
+	helm install ../../charts/service-graph --namespace ${PROJECT_ENV} --dry-run --values=../../charts/service-graph/values-${PROJECT_ENV}.yaml --set repository.rootDir="${ROOT_PATH}" --debug
 skaffold-graph-log:
 	kubetail "^.*depl.*" --regex --namespace ${PROJECT_ENV}
 
