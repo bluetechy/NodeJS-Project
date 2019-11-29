@@ -68,7 +68,7 @@ To build/start the service graph (similar to the `docker-compose -f compose.yaml
 
 * `skaffold dev --no-prune=true`
 
-To tear down the service graph (if `skaffold` is running, you make need to do `CTRL+Z` first to get to the command prompt):
+To tear down the service graph (if `skaffold` is running, you may need to do `CTRL+Z` first to get to the command prompt):
 
 * `skaffold delete`
 
