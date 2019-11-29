@@ -1,12 +1,12 @@
 # NodeJS-Project
 
-This is a sample NodeJS project.
+This is a sample "hello world" NodeJS project.
 
-Run:
-  - `cd main && make dev-up`
+To startup the service graph:
+  - `cd services/service-graph && make dc-graph-up`
 
-Call:
- - `curl -X GET http://localhost:8080`
+To call the frontend application:
+ - `curl -X GET http://localhost:48080`
 
-Shutdown:
-  - `cd main && make dev-down`
+To shutdown the service graph:
+  - `cd services/service-graph && make dc-graph-down`
