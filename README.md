@@ -15,7 +15,7 @@ To install the necessary programs/tools:
 To startup the service graph:
 
   - `cd services/service-graph`
-  - `make k8s-graph-up`
+  - `make k8s-graph-up-d`
 
 To call the frontend application:
 

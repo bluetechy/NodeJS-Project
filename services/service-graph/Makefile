@@ -17,8 +17,8 @@ k8s-graph-build:
 	-git submodule update --init --recursive
 	skaffold build -f skaffold-${PROJECT_ENV}.yaml --skip-tests=true
 
-# make k8s-graph-up
-k8s-graph-up: k8s-graph-down k8s-graph-build
+# make k8s-graph-up-d
+k8s-graph-up-d: k8s-graph-down k8s-graph-build
 	helm install ../../charts/service-graph --namespace ${PROJECT_ENV} --name=${PROJECT_NAME} --values=../../charts/service-graph/values-${PROJECT_ENV}.yaml --set repository.rootDir="${ROOT_PATH}"
 
 # make k8s-graph-down
