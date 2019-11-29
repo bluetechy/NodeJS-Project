@@ -9,19 +9,6 @@ PROJECT_NAME = ${PROJECT_UID}-${PROJECT_ENV}
 ROOT_PATH=`echo $(PWD) | rev | cut -d'/' -f3- | rev`
 
 ########################################################################
-# RULES FOR DOCKER COMPOSE
-########################################################################
-
-# make dc-graph-up
-dc-graph-up: dc-graph-down
-	docker-compose -p ${PROJECT_NAME} -f docker-compose-${PROJECT_ENV}.yml up
-
-# make dc-graph-down
-dc-graph-down:
-	docker-compose -p ${PROJECT_NAME} -f docker-compose-${PROJECT_ENV}.yml down
-	docker-compose -p ${PROJECT_NAME} -f docker-compose-${PROJECT_ENV}.yml rm -f
-
-########################################################################
 # RULES FOR KUBERNETES
 ########################################################################
 
