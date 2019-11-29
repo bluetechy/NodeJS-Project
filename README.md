@@ -14,4 +14,4 @@ To call the frontend application:
 To shutdown the service graph:
 
   - `cd services/service-graph`
-  - `make k8s-graph-down`
+  - `make dc-graph-down`
