@@ -93,16 +93,25 @@ k8s-pods:
 
 ########################################################################
 
-#https://skaffold.dev/docs/references/cli/
+# https://skaffold.dev/docs/references/cli/
 
+# make skaffold-graph-up
 skaffold-graph-up:
 	skaffold dev -f skaffold-${PROJECT_ENV}.yaml --no-prune=true
+
+# make skaffold-graph-up-debug
 skaffold-graph-up-debug:
 	skaffold dev -f skaffold-${PROJECT_ENV}.yaml --no-prune=true -v debug
+
+# make skaffold-graph-down
 skaffold-graph-down:
 	skaffold delete -f skaffold-${PROJECT_ENV}.yaml
+
+# make skaffold-graph-inspect
 skaffold-graph-inspect:
 	helm install ../../charts/service-graph --namespace ${PROJECT_ENV} --dry-run --values=../../charts/service-graph/values-${PROJECT_ENV}.yaml --set repository.rootDir="${ROOT_PATH}" --debug
+
+# make skaffold-graph-log
 skaffold-graph-log:
 	kubetail "^.*depl.*" --regex --namespace ${PROJECT_ENV}
 

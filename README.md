@@ -66,7 +66,7 @@ To treat a specific context as local:
 
 To build/start the service graph (similar to the `docker-compose -f compose.yaml up` command):
 
-* `skaffold dev`
+* `skaffold dev --no-prune=true`
 
 To tear down the service graph (if `skaffold` is running, you make need to do `CTRL+Z` first to get to the command prompt):
 
@@ -75,20 +75,6 @@ To tear down the service graph (if `skaffold` is running, you make need to do `C
 To manually `apply` (i.e. `add`) a new spec/manifest file to a running service graph:
 
 * `kubectl apply -f manifest.yml`
-
------------------------
-
-To install `helm`, including `tiller` (using the `Makefile` in the `service-graph` folder):
-
-* `make install-helm`
-
-To install `tiller` (using the `Makefile` in the `service-graph` folder):
-
-* `make install-tiller`
-
-To install `coredns` using `helm`:
-
-* `make install-coredns` (using the `Makefile` in the `service-graph` folder):
 
 -----------------------
 
