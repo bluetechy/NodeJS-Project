@@ -12,15 +12,6 @@ ROOT_PATH=`echo $(PWD) | rev | cut -d'/' -f3- | rev`
 # RULES FOR KUBERNETES
 ########################################################################
 
-# make k8s-create-namespace
-k8s-create-namespace:
-	kubectl create namespace ${PROJECT_ENV}
-	kubectl config set-context --current --namespace=${PROJECT_ENV}
-
-# make k8s-switch-namespace
-k8s-switch-namespace:
-	kubectl config set-context --current --namespace=${PROJECT_ENV}
-
 # make k8s-graph-build
 k8s-graph-build:
 	-git submodule update --init --recursive
@@ -66,14 +57,27 @@ k8s-gui-down:
 k8s-gui-open:
 	open http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
-# make k8s-create-admin
-k8s-create-admin:
+# make k8s-admin-create
+k8s-admin-create:
 	kubectl apply -f dashboard-adminuser.yaml
 	kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
 
-# make k8s-show-admin-token
-k8s-show-admin-token:
+# make k8s-admin-token
+k8s-admin-token:
 	kubectl -n kube-system describe secret $(kubectl -n kube-system get secret | grep admin-user | awk '{print $1}')
+
+# make k8s-namespace-create
+k8s-namespace-create:
+	kubectl create namespace ${PROJECT_ENV}
+	kubectl config set-context --current --namespace=${PROJECT_ENV}
+
+# make k8s-namespace-switch
+k8s-namespace-switch:
+	kubectl config set-context --current --namespace=${PROJECT_ENV}
+
+# make k8s-namespaces
+k8s-namespaces:
+	kubectl get namespaces
 
 # make k8s-services
 k8s-services:

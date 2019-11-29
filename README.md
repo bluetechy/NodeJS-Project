@@ -2,14 +2,29 @@
 
 This is a sample "hello world" NodeJS project.
 
+To install the necessary programs/tools:
+
+  - `cd services/service-graph`
+  - `make install-helm`
+  - `make install-tiller`
+  - `make install-skaffold`
+  - `make install-brew` (if you don't already have it installed)
+  - `make install-kubetail`
+  - `make k8s-namespace-create`
+
 To startup the service graph:
-  - `cd services/service-graph && make k8s-graph-up`
+
+  - `cd services/service-graph`
+  - `make k8s-graph-up`
 
 To call the frontend application:
+
  - `curl -X GET http://localhost:48080`
 
 To shutdown the service graph:
-  - `cd services/service-graph && make k8s-graph-down`
+
+  - `cd services/service-graph`
+  - `make k8s-graph-down`
 
 ## Kubernetes Commands:
 
