@@ -3,13 +3,13 @@
 This is a sample NodeJS project.
 
 Run:
-  - `cd main && make dc-up`
+  - `cd main && make dc-graph-up`
 
 Call:
  - `curl -X GET http://localhost:48080`
 
 Shutdown:
-  - `cd main && make dc-down`
+  - `cd main && make dc-graph-down`
 
 ## Kubernetes Commands:
 
