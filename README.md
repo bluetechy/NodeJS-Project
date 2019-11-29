@@ -105,7 +105,7 @@ To list all pods:
 
 To view a pod's configuration details (e.g. where `mypod` is the name of the pod):
 
-* `kubectl describe pods mypod`
+* `kubectl describe pod mypod`
 
 To get a pod's configuration details as JSON (e.g. where `mypod` is the name of the pod):
 
@@ -137,7 +137,7 @@ To list all deployments:
 
 To view a deployment's configuration details (e.g. where `mydepl` is the name of the deployment):
 
-* `kubectl describe pods mydepl`
+* `kubectl describe deployment mydepl`
 
 To get a deployment's configuration details as JSON (e.g. where `mydepl` is the name of the deployment):
 
@@ -165,7 +165,7 @@ To list all services:
 
 To view a service's configuration details (e.g. where `mysvc` is the name of the service):
 
-* `kubectl describe services mysvc`
+* `kubectl describe service mysvc`
 
 To get a service's configuration details as JSON (e.g. where `mysvc` is the name of the service):
 
@@ -196,6 +196,6 @@ To delete a helm chart (e.g. where `mychart` is the name of the chart):
 
 To preview how helm chart templates render (e.g. where `mychart` is the name of the chart):
 
-* `helm install ./mychart --values=values.yaml --dry-run --debug`
+* `helm install ./mychart --namespace=prod --dry-run --values=values.yaml --debug`
 
 Also, see https://kubernetes.io/docs/reference/kubectl/cheatsheet/
