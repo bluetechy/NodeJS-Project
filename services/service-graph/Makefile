@@ -23,10 +23,6 @@ endif
 dc-graph-up: dc-graph-down
 	docker-compose -p ${PROJECT_NAME} -f docker-compose-${PROJECT_ENV}.yml up
 
-# make dc-graph-up-d
-dc-graph-up-d: dc-graph-down
-	docker-compose -p ${PROJECT_NAME} -f docker-compose-${PROJECT_ENV}.yml up -d
-
 # make dc-graph-down
 dc-graph-down:
 	docker-compose -p ${PROJECT_NAME} -f docker-compose-${PROJECT_ENV}.yml down
