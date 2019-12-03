@@ -29,6 +29,10 @@ k8s-graph-down:
 k8s-graph-inspect:
 	helm install ../../charts/service-graph --namespace ${PROJECT_ENV} --dry-run --values=../../charts/service-graph/values-${PROJECT_ENV}.yaml --set repository.rootDir="${ROOT_PATH}" --debug
 
+# make k8s-graph-lint
+k8s-graph-lint:
+	helm lint ../../charts/service-graph --namespace ${PROJECT_ENV} --values=../../charts/service-graph/values-${PROJECT_ENV}.yaml
+
 # make k8s-graph-log
 k8s-graph-log:
 	kubetail "^.*depl.*" --regex --namespace ${PROJECT_ENV}
