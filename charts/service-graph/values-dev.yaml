@@ -7,6 +7,8 @@ deployment:
 
 image:
     pullPolicy: IfNotPresent
+    #registry: ""
+    #tag: ""
 
 repository:
     rootDir: "/Users/matthewm/Documents/Github/bluetechy/NodeJS-Project"
