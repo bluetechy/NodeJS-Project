@@ -3,17 +3,17 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
     labels:
-        app: frontend-depl
+        app.kubernetes.io/component: frontend-depl
     name: frontend-depl
 spec:
     replicas: {{ .Values.service.frontend.replicas }}
     selector:
         matchLabels:
-            app: frontend-pod
+            app.kubernetes.io/component: frontend-pod
     template:
         metadata:
             labels:
-                app: frontend-pod
+                app.kubernetes.io/component: frontend-pod
             name: frontend-pod
         spec:
             containers:
@@ -41,7 +41,7 @@ metadata:
     name: frontend-svc
 spec:
     selector:
-        app: frontend-pod
+        app.kubernetes.io/component: frontend-pod
     ports:
         - name: frontend-port-ingress
           port: 48080
